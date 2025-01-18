@@ -17,7 +17,7 @@ window.onload = function () {
 
   function startGame() {
     console.log("start game");
-    game = new Game();
+    game = new Game(); // game variable is an instance of Game class
     game.start();
   }
 

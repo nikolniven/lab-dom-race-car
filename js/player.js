@@ -26,10 +26,11 @@ class Player {
     this.top = this.top + this.directionY; ///It 3.7.1
 
     if (this.left < 0) {
-      this.left = 0;
+      this.left = 0; // is not allowing the car to leave the screen from left
     }
-    if (this.left > this.gameScreen.width - this.car.width) {
-      this.left = this.gameScreen.width - this.car.width;
+    if (this.left > this.gameScreen.offsetWidth - this.width) {
+      //we cant use this.gameScreen.width because its a string ending in px - actually css prop - instead we need to get the integear rapresenting width which we can get from offsetWidth
+      this.left = this.gameScreen.offsetWidth - this.width; //same as above
     }
     if (this.top < 0) {
       this.top = 0;

@@ -7,8 +7,8 @@ class Game {
     this.height = 600;
     this.width = 500;
     this.obstacles = [];
-    this.score = 0;
-    this.lives = 3;
+    this.score = document.getElementById("score");
+    this.lives = 9999;
     this.gameIsOver = false;
     this.gameIntervalId = // empty? iteration 0
       this.gameLoopFrecuency = 1000 / 60;
@@ -35,24 +35,25 @@ class Game {
     }
 
     for (let i = 0; i < this.obstacles.length; i++) {
-      const obstacle = this.obstacles[i];
-      obstacle.move();
+      const obstacle = this.obstacles[i]; //which obstacle is targeted
+
+      obstacle.move(); // what is doing
 
       // Check for collision
       if (this.player.didCollide(obstacle)) {
-        obstacle.carObstacle.remove();
+        obstacle.carObstacle.remove(); // removing the obst form screen
 
-        this.obstacles.splice(i, 1);
+        this.obstacles.splice(i, 1); // removing it from the array
         // Reduce player's lives by 1
         this.lives--;
         // Update the counter variable to account for the removed obstacle
-        i--;
+        i--; //if we collide make sure that we check the same position after the splice
       }
 
       if (this.height < obstacle.top) {
-        this.score++;
-        this.obstacles.splice(i, 1);
+        this.score.textContent++;
         obstacle.carObstacle.remove();
+        this.obstacles.splice(i, 1);
         i--;
       }
       if (this.lives === 0) {
